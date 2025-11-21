@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/style.css">
+<title>Edit Task</title>
+</head>
+<body>
+  <h1>Edit Task</h1>
+  <form method="POST" action="/tasks/<%= task._id %>?_method=PUT">
+    <input type="text" name="title" value="<%= task.title %>" required><br>
+    <textarea name="description"><%= task.description %></textarea><br>
+    <input type="date" name="dueDate" value="<%= task.dueDate.toISOString().split('T')[0] %>"><br>
+    <select name="priority"><option <%= task.priority === 'low' ? 'selected' : '' %>>low</option><option <%= task.priority === 'medium' ? 'selected' : '' %>>medium</option><option <%= task.priority === 'high' ? 'selected' : '' %>>high</option></select><br>
+    <select name="status"><option <%= task.status === 'pending' ? 'selected' : '' %>>pending</option><option <%= task.status === 'in-progress' ? 'selected' : '' %>>in-progress</option><option <%= task.status === 'completed' ? 'selected' : '' %>>completed</option></select><br>
+    <button>Update</button>
+  </form>
+  <a href="/tasks">Back</a>
+</body>
+</html>
